@@ -460,7 +460,7 @@ class BaseModelView(BaseView, ActionsMixin):
     """
 
     def __init__(self, model,
-                 name=None, category=None, endpoint=None, url=None):
+                 name=None, category=None, endpoint=None, url=None, avatar_path=None):
         """
             Constructor.
 
@@ -498,6 +498,9 @@ class BaseModelView(BaseView, ActionsMixin):
 
         # Scaffolding
         self._refresh_cache()
+
+	#Avatar
+	self.avatar_path = avatar_path
 
     # Caching
     def _refresh_cache(self):
@@ -1193,7 +1196,10 @@ class BaseModelView(BaseView, ActionsMixin):
 
                                # Actions
                                actions=actions,
-                               actions_confirmation=actions_confirmation)
+                               actions_confirmation=actions_confirmation,
+
+			       # Avatar
+			       avatar_path = self.avatar_path)
 
     @expose('/new/', methods=('GET', 'POST'))
     def create_view(self):

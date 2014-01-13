@@ -119,7 +119,12 @@
                     {% endblock %}
                 </td>
                 {% for c, name in list_columns %}
-                <td>{{ get_value(row, c) }}</td>
+                    {% if c == "avatar" %}
+                    <td><a href="{{avatar_path}}/{{ get_value(row, c) }}"><img width=60 height=60
+                            src="{{avatar_path}}/{{ get_value(row, c) }}" /></a></td>
+                    {% else %}
+                    <td>{{ get_value(row, c) }}</td>
+                    {% endif %}
                 {% endfor %}
             {% endblock %}
         </tr>

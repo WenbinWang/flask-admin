@@ -241,7 +241,7 @@ class ModelView(BaseModelView):
     """
 
     def __init__(self, model, session,
-                 name=None, category=None, endpoint=None, url=None):
+                 name=None, category=None, endpoint=None, url=None, avatar_path=None):
         """
             Constructor.
 
@@ -265,10 +265,12 @@ class ModelView(BaseModelView):
 
         self._filter_joins = dict()
 
+	self.avatar_path = avatar_path
+
         if self.form_choices is None:
             self.form_choices = {}
 
-        super(ModelView, self).__init__(model, name, category, endpoint, url)
+        super(ModelView, self).__init__(model, name, category, endpoint, url, avatar_path)
 
         # Primary key
         self._primary_key = self.scaffold_pk()
